@@ -1,0 +1,21 @@
+1. Tables created
+2. select * from customer 
+   where (city='Pune' or city='Mumbai')
+   and first_name like 'm%';
+3. select distinct city from customer;
+4. update books
+    -> set price = price + 0.05 * price
+    -> where publisher_year = 2006;
+5. delete from customer where city='Peth';
+6. select * from authors
+    -> where country='China' or country='England';
+7. select * from publishers where year=2015 or year=2016;
+8. select * from books
+    -> where price = (select max(price) from books);
+    select * from books
+    -> where price >= 300 and price <= 400;
+9. select title, price, publisher_year
+    -> from books
+    -> order by publisher_year DESC;
+10. select * from books
+    -> where publisher_year in (2006, 2015, 2019);
