@@ -1,0 +1,80 @@
+
+
+Field	Type	Null	Key	Default	Extra
+deptId	int	YES		NULL	
+deptName	varchar(30)	YES		NULL	
+LOC	varchar(10)	YES		NULL	
+
+
+Field	Type	Null	Key	Default	Extra
+empId	int	NO	PRI	NULL	auto_increment
+empName	varchar(20)	YES		NULL	
+empSal	int	YES		NULL	
+empDeptId	int	YES	MUL	NULL	
+
+
+deptId	deptName	LOC
+1		CS			Pune
+2		ENTC		Mumbai
+3		IT			Delhi
+4		Math		Punjab
+
+
+empId	empName	empSal	empDeptId
+1111	Nachi	30000	3
+2222	Abhay	35000	1
+3333	Kunal	10000	2
+4444	Yash	40000	4
+
+
+Field	Type	Null	Key	Default	Extra
+empId	int	NO	PRI	NULL	auto_increment
+empName	varchar(20)	YES		NULL	
+empSal	int	YES		NULL	
+empDeptId	int	YES	MUL	NULL	
+emp_joiningdate	date	YES		NULL	
+
+
+Field	Type	Null	Key	Default	Extra
+empId	int	NO	PRI	NULL	auto_increment
+empName	varchar(20)	YES		NULL	
+empSal	decimal(10,0)	YES		NULL	
+empDeptId	int	YES	MUL	NULL	
+emp_joiningdate	date	YES		NULL	
+
+
+deptId	deptName	LOC
+1		CS		Pune
+2		ENTC	Mumbai
+3		IT		Delhi
+4		Math	Punjab
+
+
+empId	empName	emp_joiningdate
+1111	Nachi	NULL
+2222	Abhay	NULL
+3333	Kunal	NULL
+4444	Yash	NULL
+
+
+empId	empName	emp_joiningdate
+100	Nachi	NULL
+2222	Abhay	NULL
+3333	Kunal	NULL
+4444	Yash	NULL
+
+
+Table	Non_unique	Key_name	Seq_in_index	Column_name	Collation	Cardinality	Sub_part	Packed	Null	Index_type	Comment	Index_comment	Visible	Expression
+DEPT	1	IND1	1	deptName	A	NULL	NULL	NULL	YES	BTREE			YES	NULL
+
+
+Table	Non_unique	Key_name	Seq_in_index	Column_name	Collation	Cardinality	Sub_part	Packed	Null	Index_type	Comment	Index_comment	Visible	Expression
+
+
+EMP	0	PRIMARY	1	empId	A	4	NULL	NULL		BTREE			YES	NULL
+
+EMP	1	empDeptId	1	empDeptId	A	NULL	NULL	NULL	YES	BTREE			YES	NULL
+
+EMP	1	IND2	1	empName	A	NULL	NULL	NULL	YES	BTREE			YES	NULL
+
+EMP	1	IND2	2	empSal	A	NULL	NULL	NULL	YES	BTREE			YES	NULL
