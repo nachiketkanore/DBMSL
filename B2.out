@@ -1,0 +1,384 @@
+(base) nachiket@NK:~$ mongo
+MongoDB shell version v3.6.8
+connecting to: mongodb://127.0.0.1:27017
+Implicit session: session { "id" : UUID("afc40b3f-084b-4d05-861b-ee821b075eb0") }
+MongoDB server version: 3.6.8
+Server has startup warnings: 
+2020-10-26T10:35:59.867+0530 I STORAGE  [initandlisten] 
+2020-10-26T10:35:59.867+0530 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2020-10-26T10:35:59.867+0530 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2020-10-26T10:36:05.732+0530 I CONTROL  [initandlisten] 
+2020-10-26T10:36:05.733+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-10-26T10:36:05.733+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-10-26T10:36:05.733+0530 I CONTROL  [initandlisten] 
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use dbmsl
+switched to db dbmsl
+> show collections
+> db.createCollection("MyBatch")
+{ "ok" : 1 }
+> db.MyBatch.insert(
+... {
+... name: 'Nachiket',
+... class: 'TE2',
+... rollno: 31227
+... })
+WriteResult({ "nInserted" : 1 })
+> db.MyBatch.insert([
+... {
+... name: 'Kunal',
+... class: 'TE2',
+... rollno: 31205,
+... interests:['Criket','Repeat']
+... },
+... {
+... name: 'Ashwin',
+... class: 'TE2',
+... rollno: 31107,
+... interests:['Football','Reddit','Cat']
+... }])
+BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 2,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+> clear
+2020-10-26T10:40:57.343+0530 E QUERY    [thread1] ReferenceError: clear is not defined :
+@(shell):1:1
+> db.MyBatch.find()
+{ "_id" : ObjectId("5f965a4509efba2c3d744d42"), "name" : "Nachiket", "class" : "TE2", "rollno" : 31227 }
+{ "_id" : ObjectId("5f965a5b09efba2c3d744d43"), "name" : "Kunal", "class" : "TE2", "rollno" : 31205, "interests" : [ "Criket", "Repeat" ] }
+{ "_id" : ObjectId("5f965a5b09efba2c3d744d44"), "name" : "Ashwin", "class" : "TE2", "rollno" : 31107, "interests" : [ "Football", "Reddit", "Cat" ] }
+> db.MyBatch.find().pretty()
+{
+	"_id" : ObjectId("5f965a4509efba2c3d744d42"),
+	"name" : "Nachiket",
+	"class" : "TE2",
+	"rollno" : 31227
+}
+{
+	"_id" : ObjectId("5f965a5b09efba2c3d744d43"),
+	"name" : "Kunal",
+	"class" : "TE2",
+	"rollno" : 31205,
+	"interests" : [
+		"Criket",
+		"Repeat"
+	]
+}
+{
+	"_id" : ObjectId("5f965a5b09efba2c3d744d44"),
+	"name" : "Ashwin",
+	"class" : "TE2",
+	"rollno" : 31107,
+	"interests" : [
+		"Football",
+		"Reddit",
+		"Cat"
+	]
+}
+> db.MyBatch.insert([
+... {
+... name: 'Abhay',
+... class: 'TE2',
+... rollno: 31259,
+... interests:['Criket','Repeat']
+... },
+... {
+... name: 'Amit',
+... class: 'TE2',
+... rollno: 31283,
+... interests:['Criket','Repeat']
+... },
+... {
+... name: 'Rohan',
+... class: 'TE2',
+... rollno: 31223,
+... interests:['Criket','Repeat']
+... },
+... {
+... name: 'Tushar',
+... class: 'TE2',
+... rollno: 31227,
+... interests:['Football','Reddit','Cat']
+... }])
+BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 4,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+> db.MyBatch.find().pretty()
+{
+	"_id" : ObjectId("5f965a4509efba2c3d744d42"),
+	"name" : "Nachiket",
+	"class" : "TE2",
+	"rollno" : 31227
+}
+{
+	"_id" : ObjectId("5f965a5b09efba2c3d744d43"),
+	"name" : "Kunal",
+	"class" : "TE2",
+	"rollno" : 31205,
+	"interests" : [
+		"Criket",
+		"Repeat"
+	]
+}
+{
+	"_id" : ObjectId("5f965a5b09efba2c3d744d44"),
+	"name" : "Ashwin",
+	"class" : "TE2",
+	"rollno" : 31107,
+	"interests" : [
+		"Football",
+		"Reddit",
+		"Cat"
+	]
+}
+{
+	"_id" : ObjectId("5f965aba09efba2c3d744d45"),
+	"name" : "Abhay",
+	"class" : "TE2",
+	"rollno" : 31259,
+	"interests" : [
+		"Criket",
+		"Repeat"
+	]
+}
+{
+	"_id" : ObjectId("5f965aba09efba2c3d744d46"),
+	"name" : "Amit",
+	"class" : "TE2",
+	"rollno" : 31283,
+	"interests" : [
+		"Criket",
+		"Repeat"
+	]
+}
+{
+	"_id" : ObjectId("5f965aba09efba2c3d744d47"),
+	"name" : "Rohan",
+	"class" : "TE2",
+	"rollno" : 31223,
+	"interests" : [
+		"Criket",
+		"Repeat"
+	]
+}
+{
+	"_id" : ObjectId("5f965aba09efba2c3d744d48"),
+	"name" : "Tushar",
+	"class" : "TE2",
+	"rollno" : 31227,
+	"interests" : [
+		"Football",
+		"Reddit",
+		"Cat"
+	]
+}
+> db.MyBatch.find({
+... $and: [ 
+... { name: 'Dhruv'},
+... { class: 'TE1'  } 
+... ]
+... }).pretty()
+> db.MyBatch.find({ $and: [  { name: 'Nachiket'}, { class: 'TE2'  }  ] }).pretty()
+{
+	"_id" : ObjectId("5f965a4509efba2c3d744d42"),
+	"name" : "Nachiket",
+	"class" : "TE2",
+	"rollno" : 31227
+}
+> db.MyBatch.find({
+... $or: [ 
+... { name: 'Dhruv'},
+... { class: 'TE2'  } 
+... ]
+... }).pretty()
+{
+	"_id" : ObjectId("5f965a4509efba2c3d744d42"),
+	"name" : "Nachiket",
+	"class" : "TE2",
+	"rollno" : 31227
+}
+{
+	"_id" : ObjectId("5f965a5b09efba2c3d744d43"),
+	"name" : "Kunal",
+	"class" : "TE2",
+	"rollno" : 31205,
+	"interests" : [
+		"Criket",
+		"Repeat"
+	]
+}
+{
+	"_id" : ObjectId("5f965a5b09efba2c3d744d44"),
+	"name" : "Ashwin",
+	"class" : "TE2",
+	"rollno" : 31107,
+	"interests" : [
+		"Football",
+		"Reddit",
+		"Cat"
+	]
+}
+{
+	"_id" : ObjectId("5f965aba09efba2c3d744d45"),
+	"name" : "Abhay",
+	"class" : "TE2",
+	"rollno" : 31259,
+	"interests" : [
+		"Criket",
+		"Repeat"
+	]
+}
+{
+	"_id" : ObjectId("5f965aba09efba2c3d744d46"),
+	"name" : "Amit",
+	"class" : "TE2",
+	"rollno" : 31283,
+	"interests" : [
+		"Criket",
+		"Repeat"
+	]
+}
+{
+	"_id" : ObjectId("5f965aba09efba2c3d744d47"),
+	"name" : "Rohan",
+	"class" : "TE2",
+	"rollno" : 31223,
+	"interests" : [
+		"Criket",
+		"Repeat"
+	]
+}
+{
+	"_id" : ObjectId("5f965aba09efba2c3d744d48"),
+	"name" : "Tushar",
+	"class" : "TE2",
+	"rollno" : 31227,
+	"interests" : [
+		"Football",
+		"Reddit",
+		"Cat"
+	]
+}
+> db.MyBatch.find({
+... $nor: [ 
+... { name: 'Dhruv'},
+... { rollno: 31105 },
+... { instahandle : 'iamapoorvdixit'} 
+... ]
+... }).pretty()
+[1]+  Stopped                 mongo
+(base) nachiket@NK:~$ mongo
+MongoDB shell version v3.6.8
+connecting to: mongodb://127.0.0.1:27017
+Implicit session: session { "id" : UUID("492b48b3-2cdc-47e8-af75-6a81b9d0865a") }
+MongoDB server version: 3.6.8
+Server has startup warnings: 
+2020-10-26T10:35:59.867+0530 I STORAGE  [initandlisten] 
+2020-10-26T10:35:59.867+0530 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2020-10-26T10:35:59.867+0530 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2020-10-26T10:36:05.732+0530 I CONTROL  [initandlisten] 
+2020-10-26T10:36:05.733+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-10-26T10:36:05.733+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-10-26T10:36:05.733+0530 I CONTROL  [initandlisten] 
+> use dbmsl
+switched to db dbmsl
+> show collections
+MyBatch
+> db.MyBatch.find({
+... $nor: [ 
+... { name: 'Abhay'},
+... { rollno: 31250 }
+... ]
+... }).pretty()
+{
+	"_id" : ObjectId("5f965a4509efba2c3d744d42"),
+	"name" : "Nachiket",
+	"class" : "TE2",
+	"rollno" : 31227
+}
+{
+	"_id" : ObjectId("5f965a5b09efba2c3d744d43"),
+	"name" : "Kunal",
+	"class" : "TE2",
+	"rollno" : 31205,
+	"interests" : [
+		"Criket",
+		"Repeat"
+	]
+}
+{
+	"_id" : ObjectId("5f965a5b09efba2c3d744d44"),
+	"name" : "Ashwin",
+	"class" : "TE2",
+	"rollno" : 31107,
+	"interests" : [
+		"Football",
+		"Reddit",
+		"Cat"
+	]
+}
+{
+	"_id" : ObjectId("5f965aba09efba2c3d744d46"),
+	"name" : "Amit",
+	"class" : "TE2",
+	"rollno" : 31283,
+	"interests" : [
+		"Criket",
+		"Repeat"
+	]
+}
+{
+	"_id" : ObjectId("5f965aba09efba2c3d744d47"),
+	"name" : "Rohan",
+	"class" : "TE2",
+	"rollno" : 31223,
+	"interests" : [
+		"Criket",
+		"Repeat"
+	]
+}
+{
+	"_id" : ObjectId("5f965aba09efba2c3d744d48"),
+	"name" : "Tushar",
+	"class" : "TE2",
+	"rollno" : 31227,
+	"interests" : [
+		"Football",
+		"Reddit",
+		"Cat"
+	]
+}
+> db.MyBatch.save(
+... {
+... name: 'ABC XYZ',
+... class: 'TE2',
+... rollno: 11111
+... })
+WriteResult({ "nInserted" : 1 })
+> db.MyBatch.find({})
+{ "_id" : ObjectId("5f965a4509efba2c3d744d42"), "name" : "Nachiket", "class" : "TE2", "rollno" : 31227 }
+{ "_id" : ObjectId("5f965a5b09efba2c3d744d43"), "name" : "Kunal", "class" : "TE2", "rollno" : 31205, "interests" : [ "Criket", "Repeat" ] }
+{ "_id" : ObjectId("5f965a5b09efba2c3d744d44"), "name" : "Ashwin", "class" : "TE2", "rollno" : 31107, "interests" : [ "Football", "Reddit", "Cat" ] }
+{ "_id" : ObjectId("5f965aba09efba2c3d744d45"), "name" : "Abhay", "class" : "TE2", "rollno" : 31259, "interests" : [ "Criket", "Repeat" ] }
+{ "_id" : ObjectId("5f965aba09efba2c3d744d46"), "name" : "Amit", "class" : "TE2", "rollno" : 31283, "interests" : [ "Criket", "Repeat" ] }
+{ "_id" : ObjectId("5f965aba09efba2c3d744d47"), "name" : "Rohan", "class" : "TE2", "rollno" : 31223, "interests" : [ "Criket", "Repeat" ] }
+{ "_id" : ObjectId("5f965aba09efba2c3d744d48"), "name" : "Tushar", "class" : "TE2", "rollno" : 31227, "interests" : [ "Football", "Reddit", "Cat" ] }
+{ "_id" : ObjectId("5f965bdac5706a1da8e1cd14"), "name" : "ABC XYZ", "class" : "TE2", "rollno" : 11111 }
+> 
